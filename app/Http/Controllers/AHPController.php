@@ -17,13 +17,13 @@ class AHPController extends Controller
     {
         $kriterias = Kriteria::all();
         $nilai = [];
-    
+
         foreach ($kriterias as $k1) {
             foreach ($kriterias as $k2) {
                 if ($k1->id < $k2->id) {
                     $data = PerbandinganKriteria::where('kriteria_1', $k1->id)
-                            ->where('kriteria_2', $k2->id)
-                            ->first();
+                        ->where('kriteria_2', $k2->id)
+                        ->first();
 
                     if ($data) {
                         $nilai[$k1->id][$k2->id] = $data->nilai;
@@ -58,7 +58,10 @@ class AHPController extends Controller
             }
         }
 
-        return redirect()->route('pairwise.index')->with('success', 'Data berhasil disimpan.')->with('persisted', $request->nilai);
+        // Hitung bobot dan simpan
+        $this->hitungBobot();
+
+        return redirect()->route('pairwise.index')->with('success', 'Data berhasil disimpan dan bobot dihitung.');
     }
 
     // 3. Hitung bobot AHP + validasi CR
@@ -86,9 +89,7 @@ class AHPController extends Controller
         foreach ($kriterias as $k2) {
             $total = 0;
             foreach ($kriterias as $k1) {
-                if (isset($matrix[$k1->id][$k2->id])) {
-                    $total += $matrix[$k1->id][$k2->id];
-                }
+                $total += $matrix[$k1->id][$k2->id] ?? 0;
             }
             $totalKolom[$k2->id] = $total ?: 1;
         }
@@ -97,7 +98,7 @@ class AHPController extends Controller
         foreach ($kriterias as $k1) {
             $jumlah = 0;
             foreach ($kriterias as $k2) {
-                $normal = $matrix[$k1->id][$k2->id] / $totalKolom[$k2->id];
+                $normal = ($matrix[$k1->id][$k2->id] ?? 0) / $totalKolom[$k2->id];
                 $jumlah += $normal;
             }
             $bobot[$k1->id] = round($jumlah / $n, 4);

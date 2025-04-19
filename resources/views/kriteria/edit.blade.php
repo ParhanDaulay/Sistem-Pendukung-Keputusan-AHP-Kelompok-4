@@ -21,31 +21,37 @@
             <div>
                 <label for="kode" class="block text-sm font-semibold text-gray-700">Kode Kriteria</label>
                 <input type="text" name="kode" id="kode" value="{{ old('kode', $kriteria->kode) }}"
-                       class="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                       class="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                       required>
             </div>
 
             <div>
                 <label for="nama" class="block text-sm font-semibold text-gray-700">Nama Kriteria</label>
                 <input type="text" name="nama" id="nama" value="{{ old('nama', $kriteria->nama) }}"
-                       class="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                       class="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                       required>
             </div>
 
             <div>
-                <label for="deskripsi" class="block text-sm font-semibold text-gray-700">Deskripsi</label>
+                <label for="deskripsi" class="block text-sm font-semibold text-gray-700">Deskripsi (opsional)</label>
                 <textarea name="deskripsi" id="deskripsi" rows="3"
                           class="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400">{{ old('deskripsi', $kriteria->deskripsi) }}</textarea>
             </div>
 
             @if(auth()->user()->role === 'admin')
-            <div>
-                <label class="block text-sm font-semibold text-gray-700">Bobot (otomatis dari AHP)</label>
-                <input type="text" value="{{ $kriteria->bobot ?? '-' }}" 
-                       class="w-full border border-gray-200 bg-gray-100 rounded px-3 py-2 mt-1 text-gray-600" 
-                       readonly>
-            </div>            
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700">Bobot (dihitung otomatis dari AHP)</label>
+                    <input type="text" value="{{ $kriteria->bobot !== null ? number_format($kriteria->bobot, 4) : 'Belum dihitung' }}" 
+                           class="w-full border border-gray-200 bg-gray-100 rounded px-3 py-2 mt-1 text-gray-600 italic" 
+                           readonly>
+                </div>
             @endif
 
-            <div class="pt-4">
+            <div class="pt-4 flex justify-end space-x-2">
+                <a href="{{ route('kriteria.index') }}"
+                   class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-5 py-2 rounded transition">
+                    Batal
+                </a>
                 <button type="submit"
                         class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded shadow transition">
                     💾 Update

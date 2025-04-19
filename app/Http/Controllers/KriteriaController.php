@@ -10,8 +10,14 @@ class KriteriaController extends Controller
     public function index()
     {
         $kriterias = Kriteria::all();
-        return view('kriteria.index', compact('kriterias'));
+        $totalBobot = $kriterias->sum('bobot');
+    
+        // ambil CR terakhir dari session jika pernah dihitung
+        $cr = session('cr'); // atau simpan ke DB kalau perlu
+    
+        return view('kriteria.index', compact('kriterias', 'totalBobot', 'cr'));
     }
+    
 
     public function create()
     {
@@ -43,12 +49,15 @@ class KriteriaController extends Controller
             'kode' => 'required|string|max:10|unique:kriterias,kode,' . $kriterium->id,
             'nama' => 'required|string|max:100',
             'deskripsi' => 'nullable|string',
+            'bobot' => 'nullable|numeric|min:0|max:1',
         ]);
-
-        $kriterium->update($request->only(['kode', 'nama', 'deskripsi']));
-
+    
+        $kriterium->update($request->all());
+    
         return redirect()->route('kriteria.index')->with('success', 'Kriteria berhasil diperbarui!');
     }
+    
+    
 
     public function destroy(Kriteria $kriterium)
     {

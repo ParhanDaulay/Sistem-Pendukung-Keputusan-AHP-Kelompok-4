@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_karyawan');
             $table->json('skor_per_kriteria')->nullable(); // disimpan dalam format JSON
-            $table->float('total_skor', 8, 4);
+            $table->decimal('total_skor', 8, 4);
             $table->timestamps();
         });
     }

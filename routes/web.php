@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/pairwise', [AHPController::class, 'store'])->name('pairwise.store');
     Route::delete('/pairwise/reset', [AHPController::class, 'reset'])->name('pairwise.reset');
+    Route::delete('/pairwise/reset', [\App\Http\Controllers\AHPController::class, 'reset'])->name('pairwise.reset');
     Route::get('/bobot', [AHPController::class, 'hitungBobot'])->name('pairwise.bobot');
     Route::get('/ranking/pdf', [AHPController::class, 'exportPDF'])->name('ahp.export');
 

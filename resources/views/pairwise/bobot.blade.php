@@ -54,39 +54,54 @@
     </div>
 
     <div class="mt-6">
+        @if ($cr <= 0.1)
         <a href="{{ route('ranking') }}" class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600">
             Lanjut ke Perankingan
         </a>
+    @else
+        <button disabled class="bg-gray-300 text-gray-600 px-6 py-2 rounded cursor-not-allowed">
+            Lanjut ke Perankingan (CR Tidak Valid)
+        </button>
+    @endif
+    
     </div>
 
     <div class="mt-8">
         <h2 class="text-xl font-bold mb-4">Visualisasi Bobot Kriteria</h2>
-        <canvas id="bobotChart" height="120"></canvas>
+        <canvas id="bobotChart" width="400" height="200"></canvas>
     </div>
 @endsection
 
 @section('scripts')
 <script>
-    const ctx = document.getElementById('bobotChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: {!! json_encode($kriterias->pluck('nama')) !!},
-            datasets: [{
-                label: 'Bobot',
-                data: {!! json_encode(array_values($bobot)) !!},
-                backgroundColor: '#f97316'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 1
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('bobotChart').getContext('2d');
+        const labels = @json($kriterias->pluck('nama'));
+        const dataBobot = @json(array_values($bobot));
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Bobot',
+                    data: dataBobot,
+                    backgroundColor: '#f97316'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1,
+                        ticks: {
+                            stepSize: 0.1
+                        }
+                    }
                 }
             }
-        }
+        });
     });
 </script>
 @endsection

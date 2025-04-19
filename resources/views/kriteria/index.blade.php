@@ -12,6 +12,26 @@
         @endif
     </div>
 
+    @php
+        $totalBobot = $kriterias->sum('bobot');
+        $isBobotValid = $totalBobot > 0;
+        $cr = session('cr') ?? null;
+    @endphp
+
+    @if ($isBobotValid)
+        <div class="bg-green-100 text-green-700 px-4 py-2 rounded mb-4">
+            ✅ Bobot kriteria telah dihitung. Total Bobot: <strong>{{ number_format($totalBobot, 4) }}</strong>
+            @if ($cr)
+                <span class="ml-4">| Consistency Ratio (CR): <strong>{{ $cr }}</strong></span>
+            @endif
+        </div>
+    @else
+        <div class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded mb-4">
+            ⚠️ Bobot belum dihitung. Silakan lakukan perbandingan berpasangan terlebih dahulu.
+            <a href="{{ route('pairwise.index') }}" class="underline text-orange-600 hover:text-orange-800 ml-2">Hitung Bobot Sekarang</a>
+        </div>
+    @endif
+
     <div class="overflow-x-auto bg-white rounded shadow">
         <table class="min-w-full text-sm text-left">
             <thead class="bg-gray-100">
@@ -30,8 +50,14 @@
                         <td class="px-6 py-3">{{ $kriteria->kode }}</td>
                         <td class="px-6 py-3">{{ $kriteria->nama }}</td>
                         <td class="px-6 py-3">
-                            {{ $kriteria->bobot !== null ? number_format($kriteria->bobot, 4) : '-' }}
-                        </td>                        
+                            @if ($kriteria->bobot !== null)
+                                <span class="text-orange-600 font-semibold">
+                                    {{ number_format($kriteria->bobot, 4) }}
+                                </span>
+                            @else
+                                <span class="text-gray-400 italic">Belum dihitung</span>
+                            @endif
+                        </td>
                         <td class="px-6 py-3 text-center space-x-2">
                             @if(auth()->user()->role === 'admin')
                                 <a href="{{ route('kriteria.edit', $kriteria->id) }}"
@@ -59,4 +85,15 @@
             </tbody>
         </table>
     </div>
+
+    @if ($isBobotValid)
+        <div class="mt-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-2">Ringkasan Bobot</h2>
+            <ul class="text-sm text-gray-700 list-disc ml-6 space-y-1">
+                @foreach ($kriterias as $k)
+                    <li><strong>{{ $k->nama }}</strong>: {{ number_format($k->bobot, 4) }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
