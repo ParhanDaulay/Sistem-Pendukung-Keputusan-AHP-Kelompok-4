@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Sistem AHP Bank Sumut'),
+    'name' => env('APP_NAME', 'Sistem Pendukung Keputusan AHP Bank Sumut'),
 
     /*
     |--------------------------------------------------------------------------

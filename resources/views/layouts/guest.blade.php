@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Sistem Pendukung Keputusan AHP - Bank Sumut') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,8 +14,10 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased bg-cover bg-center bg-no-repeat" style="background-image: url('public/image/bg-bank-sumut.png')">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 backdrop-blur-sm bg-black/40">
+    <body class="font-sans text-gray-900 antialiased bg-cover bg-center bg-no-repeat transition-all duration-300"
+    style="background-image: url('{{ asset('image/bg-bank-sumut.png') }}')">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0"
+    style="backdrop-filter: blur(6px); background-color: rgba(0,0,0,0.4);">
 
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white/80 dark:bg-gray-800/80 shadow-md overflow-hidden sm:rounded-lg">

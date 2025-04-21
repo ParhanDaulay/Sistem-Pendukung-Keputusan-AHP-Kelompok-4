@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Sistem AHP - Bank Sumut</title>
+    <title>Sistem Pendukung Keputusan AHP - Bank Sumut</title>
     @vite(['resources/css/app.css', 'resources/js/app.js']) {{-- jika pakai Vite --}}
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 </head>
