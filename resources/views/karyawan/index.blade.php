@@ -17,8 +17,8 @@
                 <tr>
                     <th class="px-6 py-3">#</th>
                     <th class="px-6 py-3">Nama</th>
-                    <th class="px-6 py-3">NIP</th>
-                    <th class="px-6 py-3">Jabatan</th>
+                    <th class="px-6 py-3">NPP</th>
+                    <th class="px-6 py-3">Divisi</th>
                     <th class="px-6 py-3 text-center">Aksi</th>
                 </tr>
             </thead>

@@ -25,13 +25,13 @@
             </div>
 
             <div>
-                <label for="nip" class="block text-sm font-semibold text-gray-700">NIP</label>
+                <label for="nip" class="block text-sm font-semibold text-gray-700">NPP</label>
                 <input type="text" name="nip" id="nip" value="{{ old('nip', $karyawan->nip) }}"
                        class="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400" readonly>
             </div>
 
             <div>
-                <label for="jabatan" class="block text-sm font-semibold text-gray-700">Jabatan</label>
+                <label for="jabatan" class="block text-sm font-semibold text-gray-700">Divisi</label>
                 <input type="text" name="jabatan" id="jabatan" value="{{ old('jabatan', $karyawan->jabatan) }}"
                        class="w-full border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400">
             </div>

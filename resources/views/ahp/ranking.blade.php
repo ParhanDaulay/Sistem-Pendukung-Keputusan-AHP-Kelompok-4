@@ -29,7 +29,7 @@
                             </td>
                         @endforeach
                         <td class="px-6 py-3 font-semibold text-center text-gray-800">
-                            {{ number_format($r['total_skor'], 4) }}
+                            {{ number_format($r['total_skor'], 2) }}
                         </td>
                     </tr>
                 @endforeach

@@ -145,7 +145,7 @@ class AHPController extends Controller
                 $bobot = $kriteria->bobot ?? 0;
 
                 $skor = $nilai * $bobot;
-                $skorPerKriteria[$kriteria->kode] = number_format($skor, 4);
+                $skorPerKriteria[$kriteria->kode] = number_format($skor, 2);
                 $total += $skor;
             }
 
@@ -190,7 +190,7 @@ class AHPController extends Controller
                 $bobot = $kriteria->bobot ?? 0;
                 $skor = $nilai * $bobot;
 
-                $skorPerKriteria[$kriteria->kode] = number_format($skor, 4);
+                $skorPerKriteria[$kriteria->kode] = number_format($skor, 2);
                 $total += $skor;
             }
 

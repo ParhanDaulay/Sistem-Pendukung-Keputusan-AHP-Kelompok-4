@@ -22,12 +22,12 @@
         </div>
 
         <div class="mb-4">
-            <label class="block mb-1 font-semibold text-gray-700">NIP</label>
+            <label class="block mb-1 font-semibold text-gray-700">NPP</label>
             <input type="text" name="nip" class="w-full border px-4 py-2 rounded" value="{{ old('nip') }}" required>
         </div>
 
         <div class="mb-6">
-            <label class="block mb-1 font-semibold text-gray-700">Jabatan</label>
+            <label class="block mb-1 font-semibold text-gray-700">Divisi</label>
             <input type="text" name="jabatan" class="w-full border px-4 py-2 rounded" value="{{ old('jabatan') }}" required>
         </div>
 
