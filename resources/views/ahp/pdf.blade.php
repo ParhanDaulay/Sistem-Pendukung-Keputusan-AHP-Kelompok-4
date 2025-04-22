@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <h2>Ranking Karyawan Terbaik (Metode AHP)</h2>
+    <h2>Ranking Karyawan Bank Sumut Terbaik - (Metode AHP)</h2>
 
     <table>
         <thead>

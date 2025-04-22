@@ -22,13 +22,13 @@
                 </a>
                 <a href="{{ route('kriteria.index') }}" class="block py-2 px-4 rounded hover:bg-indigo-100 {{ request()->routeIs('kriteria.*') ? 'bg-indigo-100 font-bold' : '' }}">
                     Kriteria
-                </a>
-                <a href="{{ route('penilaian.index') }}" class="block py-2 px-4 rounded hover:bg-indigo-100 {{ request()->routeIs('penilaian.*') ? 'bg-indigo-100 font-bold' : '' }}">
-                    Penilaian
-                </a>                
+                </a>               
                 <a href="{{ route('pairwise.index') }}" class="block py-2 px-4 rounded hover:bg-indigo-100 {{ request()->routeIs('pairwise.*') ? 'bg-indigo-100 font-bold' : '' }}">
                     Perbandingan
                 </a>
+                <a href="{{ route('penilaian.index') }}" class="block py-2 px-4 rounded hover:bg-indigo-100 {{ request()->routeIs('penilaian.*') ? 'bg-indigo-100 font-bold' : '' }}">
+                    Penilaian
+                </a> 
                 <a href="{{ route('ranking') }}" class="block py-2 px-4 rounded hover:bg-indigo-100 {{ request()->routeIs('ranking') ? 'bg-indigo-100 font-bold' : '' }}">
                     Ranking
                 </a>
